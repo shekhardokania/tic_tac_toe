@@ -23,10 +23,10 @@ module TicTacToe
         board.formatted_grid
         puts ""
         loop do 
-          "#{current_player.name}: Make your move(1-9): "
+          puts "#{current_player.name}: Make your move(1-9): "
            move = gets.chomp
-           x, y = get_coordinate_from_move
-           move_accepted = board.mark_cell(x, y, current_player.color)
+           x, y = get_coordinate_from_move(move)
+           move_accepted = board.set_cell(x, y, current_player.color)
            if move_accepted
 	      break
            else

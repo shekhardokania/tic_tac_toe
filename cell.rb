@@ -4,9 +4,9 @@ module TicTacToe
     def initialize(value = "")
       @value = value
     end
-  end
 
-  def occupied?
-    !(value.nil? || value.empty?)
+    def occupied?
+      !(value.nil? || value.empty?)
+    end
   end
 end
