@@ -17,6 +17,10 @@ module TicTacToe
       return "The game ended in a tie" if board.game_over == :draw
     end
 
+    def valid_move?(move)
+      !move.nil? && !move.empty? && (1..9).include?(move.to_i)
+    end	
+
     def start
       puts "#{current_player.name} will start the page."
       while true
@@ -26,20 +30,19 @@ module TicTacToe
           puts "#{current_player.name}: Make your move(1-9): "
            move = gets.chomp
            x, y = get_coordinate_from_move(move)
-           move_accepted = board.set_cell(x, y, current_player.color)
-           if move_accepted
+           if valid_move?(move) && board.set_cell(x, y, current_player.color)
 	      break
            else
-              puts "Cell already marked. Pls select an unoccupied cell."
+              puts "Invalid move, pls select again."
            end
-	 end
-         if board.game_over
+	      end
+        if board.game_over
            puts game_end_message
            board.formatted_grid
            return
-         else
-           toogle_players
-         end
+        else
+          toogle_players
+        end
       end
     end
 
